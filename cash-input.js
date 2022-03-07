@@ -37,6 +37,18 @@ $cashInput.addEventListener("input", (e) => {
   e.target.value = removeCommaInNumber(value).toLocaleString();
 });
 
+$cashInput.addEventListener("paste", (e) => {
+  if (REGEXP.NOT_NUMBER.test(e.clipboardData.getData("Text"))) {
+    const extractedNumber = Number(
+      e.clipboardData.getData("Text").replace(REGEXP.NOT_NUMBER, "")
+    );
+    const numberWithComma = extractedNumber.toLocaleString();
+    e.target.value = numberWithComma;
+    e.preventDefault();
+    return;
+  }
+});
+
 function removeCommaInNumber(value) {
   return Number(value.replace(/,/g, ""));
 }

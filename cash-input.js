@@ -59,12 +59,11 @@ $cashInput.addEventListener("input", (e) => {
 });
 
 $cashInput.addEventListener("paste", (e) => {
+  const copiedText = e.clipboardData.getData("Text");
   // 숫자가 아닌 것을 모두 ''으로 대체해줌
-  if (REGEXP.NOT_NUMBER.test(e.clipboardData.getData("Text"))) {
-    const extractedNumber = Number(
-      e.clipboardData.getData("Text").replace(REGEXP.NOT_NUMBER, "")
-    );
-    const numberWithComma = extractedNumber.toLocaleString();
+  if (REGEXP.NOT_NUMBER.test(copiedText)) {
+    const extractedNumber = copiedText.replace(REGEXP.NOT_NUMBER, "");
+    const numberWithComma = Number(extractedNumber).toLocaleString();
     e.target.value = numberWithComma;
     e.preventDefault();
     return;

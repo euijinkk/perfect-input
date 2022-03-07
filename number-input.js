@@ -18,7 +18,7 @@ $numberInput.addEventListener("keydown", (e) => {
     REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown) &&
     keyOnKeyDown === 1
   ) {
-    e.preventDefault();
+    valueAfterKeyDown = e.target.value;
     return;
   }
 
@@ -29,6 +29,10 @@ $numberInput.addEventListener("keydown", (e) => {
 });
 
 $numberInput.addEventListener("input", (e) => {
+  if (REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown)) {
+    e.target.value = valueAfterKeyDown;
+  }
+
   if (REGEXP.KOREAN.test(keyOnKeyDown)) {
     e.target.value = valueAfterKeyDown;
     return;

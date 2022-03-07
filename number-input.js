@@ -38,11 +38,10 @@ $numberInput.addEventListener("input", (e) => {
 
 $numberInput.addEventListener("paste", (e) => {
   const copiedText = e.clipboardData.getData("Text");
-
   // 붙여넣기 된 텍스트에서 e, -, + 를 제외한 후 입력
   if (REGEXP.NOT_NUMBER.test(copiedText)) {
     const extractedNumber = copiedText.replace(REGEXP.NOT_NUMBER, "");
-    e.target.value = extractedNumber;
+    e.target.value += extractedNumber;
     e.preventDefault();
     return;
   }

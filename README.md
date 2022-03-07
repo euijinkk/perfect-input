@@ -58,6 +58,8 @@
 
    - `type=number`로 설정하여도, 한글이 한글자씩 입력된다. 그렇지만, `input` 이벤트의 e.target.value에 찍히지 않는다. 그러므로, 위 `type=text`일 때와 다르게 처리해준다.
 
+4. 000000 -> 0만 입력되는 현상
+
 <br/>
 
 ## 3. 문자 입력 후 API 통신 (throttling)

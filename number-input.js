@@ -10,6 +10,8 @@ let keyOnKeyDown = "";
 let valueAfterKeyDown = "";
 
 $numberInput.addEventListener("keydown", (e) => {
+  // keydown에서 감지한 key를 input에서 사용하기 위해 변수로 정의
+  // type=number인 input에서 한글, e, -, +는 input이벤트의 e.target.value에서 감지되지 않는다.
   keyOnKeyDown = e.key;
 
   // 한글, e, -, + 입력을 제한

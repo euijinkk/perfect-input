@@ -7,7 +7,7 @@
 
 ## 1. 금액 입력
 
-`<input type=text></input>`
+`<input type="text"></input>`
 
 1. 숫자, 한글 제외 입력 제한 (`keydown`)
 
@@ -39,7 +39,7 @@
 
 ## 2. 숫자 입력
 
-`<input type=number></input>`
+`<input type="number"></input>`
 
 1. 숫자 증감 화살표 제거
 
@@ -52,11 +52,11 @@
 
 2. e , - , + 문자 제한 (`keydown`, `paste`)
 
-   - `type=number`로 설정하여도, 위와 같은 문자는 입력이 가능하다. 그렇지만, `input` 이벤트의 e.target.value에 찍히지 않는다. 그러므로,
+   - `type="number"`로 설정하여도, 위와 같은 문자는 입력이 가능하다. 그렇지만, `input` 이벤트의 e.target.value에 찍히지 않는다. 그러므로,
 
 3. 한글 입력 제한
 
-   - `type=number`로 설정하여도, 한글이 한글자씩 입력된다. 그렇지만, `input` 이벤트의 e.target.value에 찍히지 않는다. 그러므로, 위 `type=text`일 때와 다르게 처리해준다.
+   - `type="number"`로 설정하여도, 한글이 한글자씩 입력된다. 그렇지만, `input` 이벤트의 e.target.value에 찍히지 않는다. 그러므로, 위 `type="text"`일 때와 다르게 처리해준다.
 
 4. 000000 -> 0만 입력되는 현상
 

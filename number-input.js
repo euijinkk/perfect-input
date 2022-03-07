@@ -4,6 +4,7 @@ const REGEXP = {
   NOT_NUMBER_IN_NUMBER_INPUT: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|e\-+]/,
   NOT_NUMBER: /[^0-9]/g,
   KOREAN: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/,
+  NOT_ZERO: /[1-9]/,
 };
 
 let keyOnKeyDown = "";
@@ -13,6 +14,7 @@ $numberInput.addEventListener("keydown", (e) => {
   // keydown에서 감지한 key를 input에서 사용하기 위해 변수로 정의
   // type=number인 input에서 한글, e, -, +는 input이벤트의 e.target.value에서 감지되지 않는다.
   keyOnKeyDown = e.key;
+  const value = e.target.value;
 
   // 한글, e, -, + 입력을 제한
   // Backspace, Meta 등을 인식하기 위해서, keyOnKeyDown의 길이를 validate
@@ -20,7 +22,7 @@ $numberInput.addEventListener("keydown", (e) => {
     REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown) &&
     keyOnKeyDown.length === 1
   ) {
-    valueAfterKeyDown = e.target.value;
+    valueAfterKeyDown = value;
     return;
   }
 });
@@ -33,6 +35,11 @@ $numberInput.addEventListener("input", (e) => {
     keyOnKeyDown.length === 1
   ) {
     e.target.value = valueAfterKeyDown;
+    return;
+  }
+
+  if (e.target.value !== "") {
+    e.target.value = Number(e.target.value);
   }
 });
 

@@ -44,8 +44,8 @@
 1. 숫자 증감 화살표 제거
 
    ```css
-   input::-webkit-outer-spin-button,
-   input::-webkit-inner-spin-button {
+   input[type="number"]::-webkit-outer-spin-button,
+   input[type="number"]::-webkit-inner-spin-button {
      -webkit-appearance: none;
    }
    ```

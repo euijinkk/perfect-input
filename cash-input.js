@@ -65,7 +65,7 @@ $cashInput.addEventListener("paste", (e) => {
   if (REGEXP.NOT_NUMBER.test(copiedText)) {
     const extractedNumber = copiedText.replace(REGEXP.NOT_NUMBER, "");
     const numberWithComma = Number(extractedNumber).toLocaleString();
-    e.target.value = numberWithComma;
+    e.target.value += numberWithComma;
     e.preventDefault();
     return;
   }

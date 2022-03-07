@@ -38,7 +38,8 @@ $numberInput.addEventListener("input", (e) => {
     return;
   }
 
-  if (e.target.value !== "") {
+  // 숫자 앞에 0이 계속 입력되는 현상 방지
+  if (e.target.value[0] === "0") {
     e.target.value = Number(e.target.value);
   }
 });

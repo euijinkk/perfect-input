@@ -49,6 +49,7 @@ $cashInput.addEventListener("input", (e) => {
   }
 
   // emoji 입력을 제한함
+  // emoji는 keyDown에서 잡히지 않는다.
   if (REGEXP.EMOJI.test(value)) {
     e.target.value = value.replace(REGEXP.EMOJI, "");
     return;

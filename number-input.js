@@ -1,41 +1,36 @@
 const $numberInput = document.getElementById("number-input");
 
 const REGEXP = {
-  NOT_NUMBER_IN_NUMBER_INPUT: /[e\-+]/,
+  NOT_NUMBER_IN_NUMBER_INPUT: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|e\-+]/,
   NOT_NUMBER: /[^0-9]/g,
   KOREAN: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/,
 };
 
 let keyOnKeyDown = "";
-let valueAfterKeyDown;
+let valueAfterKeyDown = "";
 
 $numberInput.addEventListener("keydown", (e) => {
   keyOnKeyDown = e.key;
 
-  // e, -, + 입력을 제한
-  // Backspace, Meta 등을 인식하기 위해서, e.key의 길이를 validate
+  // 한글, e, -, + 입력을 제한
+  // Backspace, Meta 등을 인식하기 위해서, keyOnKeyDown의 길이를 validate
   if (
     REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown) &&
-    keyOnKeyDown === 1
+    keyOnKeyDown.length === 1
   ) {
-    valueAfterKeyDown = e.target.value;
-    return;
-  }
-
-  if (REGEXP.KOREAN.test(keyOnKeyDown)) {
     valueAfterKeyDown = e.target.value;
     return;
   }
 });
 
 $numberInput.addEventListener("input", (e) => {
-  if (REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown)) {
+  // 한글, e, -, + 일때, e.target.value를 keyDown에서 임시 저장한 값으로 대치
+  // Backspace, Meta 등을 인식 하기 위해서, keyOnKeyDown의 길이를 validate
+  if (
+    REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown) &&
+    keyOnKeyDown.length === 1
+  ) {
     e.target.value = valueAfterKeyDown;
-  }
-
-  if (REGEXP.KOREAN.test(keyOnKeyDown)) {
-    e.target.value = valueAfterKeyDown;
-    return;
   }
 });
 

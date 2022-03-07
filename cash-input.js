@@ -13,6 +13,7 @@ const REGEXP = {
 const possibleKey = ["a", "c", "v", "x", "r", "z"];
 
 let valueAfterKeyDown = "";
+let isKoreanPressed = false;
 
 $cashInput.addEventListener("keydown", (e) => {
   // Command/Ctrl 과 다른 알파벳을 함께 눌렀을 때
@@ -30,6 +31,7 @@ $cashInput.addEventListener("keydown", (e) => {
   // 한글이 입력되었을 때, 임시변수에 저장함.
   if (REGEXP.KOREAN.test(e.key)) {
     valueAfterKeyDown = e.target.value;
+    isKoreanPressed = true;
     return;
   }
 });
@@ -43,8 +45,9 @@ $cashInput.addEventListener("input", (e) => {
   }
 
   // 한글이 입력되었을 때, keydown에서 임시변수로 저장해둔 변수값으로 대치함.
-  if (REGEXP.KOREAN.test(value)) {
+  if (isKoreanPressed) {
     e.target.value = valueAfterKeyDown;
+    isKoreanPressed = false;
     return;
   }
 

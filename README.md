@@ -3,27 +3,27 @@
 ## 0. 사전 지식
 
 - 정규식 (RegExp)
-- Input Event (keydown, keyup, input의 차이 / paste)
+- Input Event (`keydown`, `keyup`, `input`의 차이 / `paste`)
 
 ## 1. 금액 입력
 
 `<input type=text></input>`
 
-1. 숫자, 한글 제외 입력 제한 (keydown)
+1. 숫자, 한글 제외 입력 제한 (`keydown`)
 
-   - keydown event가 발생했을 때, 숫자가 아니라면 e.preventDefault()
+   - `keydown` event가 발생했을 때, 숫자가 아니라면 `e.preventDefault()`
 
 2. emoji 입력 제한
 
-3. 한글 제한 (keydown, input)
+3. 한글 제한 (`keydown`, `input`)
 
-   - 한글은 조합문자이므로, keydown e.preventDefault() 만으로 막히지 않는다. 한글이 들어왔을 때, 따로 처리를 해주어야 한다.
+   - 한글은 조합문자이므로, `keydown`에서 `e.preventDefault()` 만으로 막히지 않는다. 한글이 들어왔을 때, 따로 처리를 해주어야 한다.
 
-   - keydown event에서 한글이면 임시 변수(valueAfterKeyDown)로 기억해두었다가, input event에서 e.target.value를 valueAfterKeyDown으로 바꾸어 준다.
+   - `keydown` event에서 한글이면 임시 변수(`valueAfterKeyDown`)로 기억해두었다가, `input` event에서 e.target.value를 `valueAfterKeyDown`으로 바꾸어 준다.
 
-4. 3자리 마다 comma(,) 찍기 (input)
+4. 3자리 마다 comma(,) 찍기 (`input`)
 
-   - string의 메소드 toLocaleString 활용
+   - string의 메소드 `toLocaleString` 활용
 
 5. command+a , command+v 가능하게 하기 (multiple keys 처리)
 
@@ -31,7 +31,7 @@
 
    - key 가 1글자인지 확인함으로써 특수키를 허용할 수 있지만, command+a, command+v와 같은 multiple keys는 여전히 제한된다.
 
-6. 숫자 제외 붙여넣기(command+v) 제한 (paste)
+6. 숫자 제외 붙여넣기(command+v) 제한 (`paste`)
 
    - 숫자를 제외한 문자를 모두 공백으로 대체 후, 숫자만 출력
 
@@ -50,8 +50,8 @@
    }
    ```
 
-2. e , - , + 문자 제한 (keydown, paste)
-   - type=number로 설정하여도, 위와 같은 문자는 입력이 가능하다.
+2. e , - , + 문자 제한 (`keydown`, `paste`)
+   - `type=number`로 설정하여도, 위와 같은 문자는 입력이 가능하다.
 
 <br/>
 

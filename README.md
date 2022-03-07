@@ -9,13 +9,11 @@
 
 `<input type=text></input>`
 
-1. 숫자 제외 입력 제한 (keydown)
+1. 숫자, 한글 제외 입력 제한 (keydown)
 
    - keydown event가 발생했을 때, 숫자가 아니라면 e.preventDefault()
 
-2. 3자리 마다 comma(,) 찍기 (input)
-
-   - string의 메소드 toLocaleString 활용
+2. emoji 입력 제한
 
 3. 한글 제한 (keydown, input)
 
@@ -23,13 +21,17 @@
 
    - keydown event에서 한글이면 임시 변수(valueAfterKeyDown)로 기억해두었다가, input event에서 e.target.value를 valueAfterKeyDown으로 바꾸어 준다.
 
-4. command+a , command+v 가능하게 하기 (multiple keys 처리)
+4. 3자리 마다 comma(,) 찍기 (input)
+
+   - string의 메소드 toLocaleString 활용
+
+5. command+a , command+v 가능하게 하기 (multiple keys 처리)
 
    - 숫자 제외 입력을 제한했으므로, command나 ArrowLeft, Backspace, Enter와 같은 key도 제한된다.
 
    - key 가 1글자인지 확인함으로써 특수키를 허용할 수 있지만, command+a, command+v와 같은 multiple keys는 여전히 제한된다.
 
-5. 숫자 제외 붙여넣기(command+v) 제한 (paste)
+6. 숫자 제외 붙여넣기(command+v) 제한 (paste)
 
 <br/>
 

@@ -22,4 +22,14 @@ $cashInput.addEventListener("input", (e) => {
     e.target.value = valueAfterKeyDown;
     return;
   }
+
+  if (value === "") {
+    return;
+  }
+
+  e.target.value = removeCommaInNumber(value).toLocaleString();
 });
+
+function removeCommaInNumber(value) {
+  return Number(value.replace(/,/g, ""));
+}

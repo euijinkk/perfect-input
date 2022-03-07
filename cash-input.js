@@ -10,9 +10,11 @@ const REGEXP = {
 };
 
 // cmd + 알파벳 - 전체선택(a) 복사(c) 붙여넣기(v) 자르기(x) 새로고침(r) 되돌리기(z)
-const possibleKey = ["a", "c,", "v", "x", "r", "z"];
+// @commnet 복사가 안되길래 봤더니 c앞에 쉼표가 있었어요!
+const possibleKey = ["a", "c", "v", "x", "r", "z"];
 
 let valueAfterKeyDown = "";
+let isPressedKorean = false;
 
 $cashInput.addEventListener("keydown", (e) => {
   // Command/Ctrl 과 다른 알파벳을 함께 눌렀을 때
@@ -30,6 +32,7 @@ $cashInput.addEventListener("keydown", (e) => {
   // 한글이 입력되었을 때, 임시변수에 저장함.
   if (REGEXP.KOREAN.test(e.key)) {
     valueAfterKeyDown = e.target.value;
+    isPressedKorean = true;
     return;
   }
 });
@@ -43,8 +46,10 @@ $cashInput.addEventListener("input", (e) => {
   }
 
   // 한글이 입력되었을 때, keydown에서 임시변수로 저장해둔 변수값으로 대치함.
-  if (REGEXP.KOREAN.test(value)) {
+  // @comment 중복해서 정규식을 검사할 필요 없어보여요
+  if (isPressedKorean) {
     e.target.value = valueAfterKeyDown;
+    isPressedKorean = false;
     return;
   }
 

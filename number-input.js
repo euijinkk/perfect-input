@@ -9,6 +9,7 @@ const REGEXP = {
 
 let keyOnKeyDown = "";
 let valueAfterKeyDown = "";
+let isKoreanPressed = false;
 
 $numberInput.addEventListener("keydown", (e) => {
   // keydown에서 감지한 key를 input에서 사용하기 위해 변수로 정의
@@ -22,6 +23,7 @@ $numberInput.addEventListener("keydown", (e) => {
     REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown) &&
     keyOnKeyDown.length === 1
   ) {
+    isKoreanPressed = true;
     valueAfterKeyDown = value;
     return;
   }
@@ -30,17 +32,18 @@ $numberInput.addEventListener("keydown", (e) => {
 $numberInput.addEventListener("input", (e) => {
   // 한글, e, -, + 일때, e.target.value를 keyDown에서 임시 저장한 값으로 대치
   // Backspace, Meta 등을 인식 하기 위해서, keyOnKeyDown의 길이를 validate
-  if (
-    REGEXP.NOT_NUMBER_IN_NUMBER_INPUT.test(keyOnKeyDown) &&
-    keyOnKeyDown.length === 1
-  ) {
+
+  // @comment keydown시 검증할 수 있으므로 여기선 정규식 검증이 필요없어보여요.
+  if (isKoreanPressed) {
     e.target.value = valueAfterKeyDown;
+    isKoreanPressed = false;
     return;
   }
 
-  if (e.target.value !== "") {
-    e.target.value = Number(e.target.value);
-  }
+  // @comment 필요업지 않을까요? 이미 숫자만 들어가있는 상태일 것 같아요 예외 케이스가 있다면 알려주세요
+  // if (e.target.value !== "") {
+  //   e.target.value = Number(e.target.value);
+  // }
 });
 
 $numberInput.addEventListener("paste", (e) => {

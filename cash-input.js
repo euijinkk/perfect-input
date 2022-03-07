@@ -1,11 +1,19 @@
-import { REGEXP } from "./regexp.js";
-
 const $cashInput = document.getElementById("cash-input");
 
-let valueAfterKeyDown = "";
+const REGEXP = {
+  NUMBER: /[0-9]/,
+  NOT_NUMBER_IN_NUMBER_INPUT: /[e.\-+]{,1}/,
+  NOT_NUMBERorKOREAN: /[^0-9ㄱ-ㅎㅏ-ㅣ가-힣]/,
+  NOT_NUMBER: /[^0-9]/g,
+  KOREAN: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/,
+  EMOJI:
+    /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g,
+};
 
 // cmd + 알파벳 - 전체선택(a) 복사(c) 붙여넣기(v) 자르기(x) 새로고침(r) 되돌리기(z)
 const possibleKey = ["a", "c,", "v", "x", "r", "z"];
+
+let valueAfterKeyDown = "";
 
 $cashInput.addEventListener("keydown", (e) => {
   if ((e.metaKey || e.ctrlKey) && possibleKey.includes(e.key)) {

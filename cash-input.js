@@ -10,7 +10,7 @@ const REGEXP = {
 };
 
 // cmd + 알파벳 - 전체선택(a) 복사(c) 붙여넣기(v) 자르기(x) 새로고침(r) 되돌리기(z)
-const possibleKey = ["a", "c,", "v", "x", "r", "z"];
+const possibleKey = ["a", "c", "v", "x", "r", "z"];
 
 let valueAfterKeyDown = "";
 

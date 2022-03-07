@@ -25,12 +25,18 @@ $cashInput.addEventListener("keydown", (e) => {
 
 $cashInput.addEventListener("input", (e) => {
   const value = e.target.value;
+
+  if (value === "") {
+    return;
+  }
+
   if (REGEXP.KOREAN.test(value)) {
     e.target.value = valueAfterKeyDown;
     return;
   }
 
-  if (value === "") {
+  if (REGEXP.EMOJI.test(value)) {
+    e.target.value = value.replace(REGEXP.EMOJI, "");
     return;
   }
 
